@@ -1,0 +1,16 @@
+.ngdialog-content .title {
+    border-bottom: 2px solid #dee2e6;
+} 
+.ngdialog-content .buttons button {
+    min-width:100px;
+}
+.dialog .buttons{
+    float:right
+}
+.popup, .dialog{
+    text-align:center;
+} 
+.popup .buttons button {
+    display:block;
+    margin:auto !important;
+}

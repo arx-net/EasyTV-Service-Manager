@@ -1,0 +1,9 @@
+<nav class="navbar-nav navbar-dark bg-dark w-100">
+    <ul class="navbar-nav w-100">
+        <li class="nav-item pl-3" ng-repeat="item in list">
+            <i ng-class="item.fontAwesome"></i>
+            <a class="nav-link pl-2" href="#" ng-if="item.name == 'logout'" ng-click="this[item.name]()" ng-bind="item.name | translate"></a>
+            <a class="nav-link pl-2"  ng-if="item.name != 'logout'" href="#!/{{:: item.name}}"ng-click="this[item.name](item.name)"  ng-bind="item.name | translate"></a>
+        </li>
+    </ul>
+</nav>

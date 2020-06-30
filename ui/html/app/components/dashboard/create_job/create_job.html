@@ -1,0 +1,102 @@
+<!-- Set Dates -->
+
+<div class="row">
+    <p class="m-3 h2" ng-bind="'create_job' | translate"></p>
+</div>
+<div>
+    <p class="col-md-7 col-lg-5" ng-bind="'create_job_prompt' | translate"></p>
+</div>
+<div class="col-md-7 col-lg-5">
+    <form autocomplete="off">
+        <div class="form-group">
+            <label for="publication_date_input" ng-bind="'publication_date' | translate"></label>
+            <input class="date form-control" autocomplete="off" name="publication_date" type="text" id="publication_date_input" placeholder="mm-dd-yyyy" ng-model="$parent.public_date">
+            <small class="form-text text-muted" ng-bind="'publication_date_prompt' | translate"></small>
+        </div>
+        <div class="form-group">
+            <label for="expiration_date_input" ng-bind="'expiration_date' |translate"></label>
+            <input class="date form-control" autocomplete="off" name="expiration_date" type="text" id="expiration_date_input" placeholder="mm-dd-yyyy" ng-model="$parent.exp_date">
+            <small class="form-text text-muted" ng-bind="'expiration_date_prompt' | translate"></small>
+        </div>
+        <input type="" style="display: none;" >
+
+        
+        <button class="mt-2 btn sm-button"  ng-click="add_task()">
+            <i class="fas fa-plus"></i>
+            <span ng-bind="'add_task' | translate"></span>
+        </button>
+    </form>
+</div>
+
+<p class="m-3" ng-bind="'job_status' | translate: {param: tasks.length }"></p>
+
+<div class="my-4 col-12" ng-show="tasks.length>0" ng-repeat="task in tasks track by $index">
+    <div class="row" ng-show="$index != 0">
+        <i class="fas fa-arrow-down col-12 p-2" style="color: #ec375e; font-size: 3em; text-align: center;"></i>
+    </div>
+    <div class="task-form col-12">
+        <!-- Task Title -->
+        <div class="task-header">
+            <div class="row">
+                <div class="col-1">
+                    <i class="fas fa-tasks" style="color: #1a90a2; font-size: 3em"></i>
+                </div>
+                <div class="col-10">
+                    <h4 ng-bind="::task.name"></h4>
+                    <p ng-bind="::task.description"></p>
+                </div>
+                <div class="col-1">
+                    <i class="float-right btn fas fa-times text-dark" ng-click="remove_task($index)"></i>
+                </div>
+            </div>
+            <hr />
+        </div>
+        <div class="row task-input-form" ng-repeat="(key,value) in task.input">
+            <div class="col-3 form-inline">
+                <label ng-bind="key + ' ('+ value + ')'"></label>
+            </div>
+            <div class="col-2 form-inline" ng-show="$parent.$index > 0" >
+                <label ng-bind="::'linked_input' | translate"></label>
+                <input class="m-3" type="checkbox" ng-model="linked" ng-change="clear_linked_input($parent.$index,key,linked)">   
+            </div>
+            <div 
+                ng-class="$parent.$index > 0 ? 'col-7' : 'col-9'" 
+                ng-show="value == 'string' && (linked == false || linked == undefined)">
+                <textarea
+                    class="form-control"
+                    type="text" 
+                    name="{{::key}}" 
+                    ng-if="value == 'string'"
+                    ng-model="job.tasks[$parent.$parent.$index].input[key]"></textarea>
+            </div>
+            <div
+                class="form-inline"
+                ng-class="$parent.$index > 0 ? 'col-7' : 'col-9'" 
+                ng-show="(value == 'int' || value =='double') && (linked == false || linked == undefined)">
+                <input
+                    class="form-control"
+                    type="number" 
+                    name="{{::key}}"
+                    ng-if="value != 'string'" 
+                    ng-model="job.tasks[$parent.$parent.$index].input[key]">
+            </div>
+            <div
+                class="form-inline"
+                ng-class="$parent.$index > 0 ? 'col-7' : 'col-9'" ng-show="linked == true"  >
+                <select name="" id=""
+                    class="form-control"
+                    ng-model="job.tasks[$parent.$index].linked_input[key]">
+
+                    <!-- Option for test input -->
+                    <option  ng-repeat="(key,value) in tasks[$parent.$index - 1].output" value="{{::key}}" 
+                    ng-bind="::key" ng-if="value == $parent.value"></option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button class="m-2 btn sm-button float-right" ng-show="tasks.length > 0" ng-click="post_job()">
+    <i class="fas fa-check"></i>
+    <span ng-bind="'post_job' | translate"></span>
+</button>

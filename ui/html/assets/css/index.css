@@ -1,0 +1,25 @@
+.language {
+    width:100%;
+    display:inline-block;
+}
+
+#login_view {
+    border-radius: 10px;
+    background-color: #EEE;
+}
+
+body {
+    color: #555;
+    background-color: #40474f;
+}
+
+.sm-button {
+    background-color: #1a90a2;
+    color: #FFF;
+}
+
+/*
+easytv color
+#1a90a2
+#ec375e
+*/

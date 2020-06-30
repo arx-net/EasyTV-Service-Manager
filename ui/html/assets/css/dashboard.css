@@ -1,0 +1,99 @@
+html{
+    margin:0px;
+}
+button:focus{
+    outline:none !important;
+}
+i{
+    color: white;
+}
+thead{
+    text-align: center;
+}
+textarea{
+    resize:both !important;
+}
+.nav > .nav-item {
+    width:100%;
+}
+.navbar-brand {
+    width:10%;
+}
+.header_list{
+    position:absolute;
+    right:0px;
+}
+html,body, ng-view, .leftbar {
+    height: 100%;
+}
+.leftbar .nav-item:hover, .accountbar .nav-item:hover {
+    background-color:black;
+}
+.leftbar .nav-link, .accountbar .nav-link {
+    display:inline-block;
+    color:inherit;
+    width: calc(100% - 24px);
+}
+.leftbar-i {
+    float:left;
+    margin-top:12px;
+}
+.accountbar {
+    position:absolute !important;
+    right: 0px;
+    z-index:100;
+}
+.sm-button {
+    background-color: #1a90a2;
+    color: #FFF;
+}
+#app-logo {
+    height: 50px;
+    width: 131px;
+}
+#app-title {
+    color: #1a90a2;
+    font-size: 1.4em;
+    margin-left: 5px;
+    font-weight: bold;
+}
+#language_select{
+    width:100px;
+}
+.avatar{
+    vertical-align: middle;
+    display:inline;
+    margin-top:10px;
+    width:40px;
+    height:30px;
+}
+#title{
+    width: 338px;
+}
+@media screen and (max-width: 576px){
+    .accountbar{
+        position:static !important;
+    }
+    .header_list{
+        position:static;
+    }
+    html{
+        height: auto;
+    }
+}
+.task-form {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #1a90a2;
+    border-radius: 5px;
+    padding: 10px 0px
+}
+.task-header{
+    padding: 5px 0px;
+}
+.task-input-form {
+    padding: 5px;
+}
+/* * {
+    outline: 1px solid red;
+   } */

@@ -1,0 +1,11 @@
+<div class="popup">
+    <div class="title pl-2" ng-bind="::ngDialogData.title | translate:{ 
+        param: ngDialogData.param }"></div>
+    <div class="message pl-2" ng-if="ngDialogData.message != undefined" ng-bind="::ngDialogData.message | translate:{ 
+        param: ngDialogData.param }">
+    </div>
+    <div class="buttons mt-2">
+        <button ng-repeat="button in ngDialogData.buttons" ng-click="closeThisDialog(button.return)"
+            ng-class="button.classes" ng-bind="::button.name | translate"></button>
+    </div>
+</div>

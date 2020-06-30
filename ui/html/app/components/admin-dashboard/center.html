@@ -1,0 +1,105 @@
+<div class="col-12 col-md-10 col-lg-6 mt-3" ng-show="account.change_password" ng-include="'app/components/account/reset_password.html'"></div>
+<div class="col-12 col-md-10 col-lg-6 mt-3" ng-show="$parent.leftbar.register_user">
+    <div class="row">
+        <p class="m-3 h2" ng-bind="'create_content_owner' | translate" ></p>
+    </div>
+    <div class="form-group">
+        <label for="contentOwnerName" ng-bind="'name' | translate"></label>
+        <input
+            id="contentOwnerName" 
+            type="text" 
+            class="form-control" 
+            name="name" 
+            ng-model="$parent.name" 
+            placeholder="Enter name">
+    </div>
+    <div class="form-group">
+        <label for="contentOwnerUserName" ng-bind="'username' | translate"></label>
+        <input
+            id="contentOwnerUserName" 
+            type="text" 
+            class="form-control" 
+            name="username" 
+            ng-model="$parent.username" 
+            placeholder="Enter username">
+    </div>
+    <div class="form-group">
+        <label for="contentOwnerEmail" ng-bind="'email' | translate"></label>
+        <input
+            id="contentOwnerEmail" 
+            type="email" 
+            class="form-control" 
+            name="email" 
+            ng-model="$parent.email" 
+            placeholder="Enter email">
+    </div>
+    <button class="btn sm-button px-4 border float-right" id="upload"
+            ng-click="submit_register()" >
+        <i class="fas fa-plus"></i>
+        <span ng-bind="'create' | translate"></span>  
+    </button>
+</div>
+<div class="col-sm-12 col-md-10 col-lg-6 mt-3" ng-show="$parent.leftbar.create_service">
+
+    <div class="row">
+        <p class="m-3 h2" ng-bind="'create_new_service' | translate" ></p>
+    </div>
+    <div class="form-group">
+        <label for="serviceName" ng-bind="'name' | translate"></label>
+        <input
+            id="serviceName" 
+            type="text" 
+            class="form-control" 
+            name="name" 
+            ng-model="$parent.name" 
+            placeholder="Enter name">
+    </div>
+    <div class="form-group">
+        <label for="serviceDescription" ng-bind="'description' | translate"></label>
+        <textarea 
+            class="form-control" 
+            id="serviceDescription" 
+            rows="3"
+            ng-model="$parent.description"></textarea>
+    </div>
+    <button class="btn sm-button px-4 float-right" id="upload"
+         ng-click="submit_create_service()" >
+        <i class="fas fa-plus"></i>
+        <span ng-bind="'create' | translate"></span>  
+    </button>
+</div>
+<div class="col-sm-12 mt-3 " ng-show="$parent.leftbar.get_services">
+    <div class="row">
+        <p class="m-3 h2" ng-bind="'all_services' | translate"></p>
+    </div>
+    <!-- class="table-responsive"  -->
+    <div class="services_list table-responsive">
+        <table class="my-2 table table-striped table-bordered " id="services">
+            <thead >
+                <tr>
+                    <th ng-bind="'id' | translate"></th>
+                    <th ng-bind="'name' | translate"></th> 
+                    <th ng-bind="'description' | translate"></th>
+                    <th ng-bind="'api key (hashed)'"></th>
+                    <th ng-bind="'enabled' | translate"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="service in $parent.services">
+                    <td ng-bind="::service.id"></td>
+                    <td ng-bind="::service.name"></td>
+                    <td ng-bind="::service.description"></td>
+                    <td ng-bind="::service.api_key"></td>
+                    <td> 
+                        <label class="switch my-1">
+                            <input type="checkbox" ng-change="request_service_availability_change(service)" 
+                                ng-checked="service.enabled" ng-model="services[$index].enabled" >
+                            <span class="slider round"></span>
+                        </label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

@@ -1,0 +1,10 @@
+<div class="col-sm-12 mt-3" ng-show="$parent.leftbar.all_jobs">
+        <div ng-controller="alljobsController"
+        ng-include="'app/components/dashboard/all_jobs/all_jobs.html'"></div>
+</div>
+<!-- Create Job -->
+<div class="col-sm-12 mt-3" ng-show="$parent.leftbar.create_job">
+        <div ng-controller="createjobController"
+        ng-include="'app/components/dashboard/create_job/create_job.html'"></div>
+</div>
+<div class="col-12 col-md-10 col-lg-6 mt-3" ng-show="account.change_password" ng-include="'app/components/account/reset_password.html'"></div>

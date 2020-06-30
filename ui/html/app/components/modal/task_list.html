@@ -1,0 +1,51 @@
+<div>
+    <div class="title pb-2" ng-bind="::ngDialogData.title | translate:{ 
+        param: ngDialogData.param }"></div>
+    <div class="message p-2" >
+        <div class="show_tasks">
+            <div class="form-group">
+                <label>Service: </label>
+                <select class="form-control" name="services" id="" ng-model="$parent.selected_service" ng-change="service_changed()">
+                    <option ng-repeat="service in $parent.services" ng-value="service" 
+                    ng-bind="::service.name" ng-show="service.enabled == true"></option>
+                </select>
+            </div>
+
+            <div class="form-group" ng-show="selected_service">
+                <label>Task: </label>
+                <select class="form-control" name="tasks" ng-model="$parent.selected_task">
+                    <option ng-repeat="task in selected_service.tasks" ng-show="task.enabled == true"
+                                ng-value="task" ng-bind="::task.name"></option>
+                </select>
+            </div>
+
+            <div class="form-group" ng-show="selected_task.description">
+                <label>Description: {{ selected_task.description}} </label>
+            </div>
+            
+            <div class="row">
+                <table class="col-12 table table-striped" id="input" ng-show="selected_task">
+                    <thead>
+                        <tr>
+                            <th ng-bind="'input' | translate"></th>
+                            <th ng-bind="'output' | translate"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="(key,value) in selected_task.input" style="text-align: center"> 
+                            <td ng-bind="value + ': ' + key"></td>
+                            <td ng-repeat="(key,value) in selected_task.output" ng-bind="value + ': ' + key" ng-if="$index == $parent.$index"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="buttons">
+        <div class="" style="margin: 0 auto; display: table">
+            <button ng-repeat="button in ngDialogData.buttons" ng-click="close_dialog(button.return)"
+                ng-class="button.classes" ng-bind="::button.name | translate">
+            </button>
+        <div>
+    </div>
+</div>

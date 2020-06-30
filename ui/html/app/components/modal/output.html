@@ -1,0 +1,23 @@
+
+<div class="popup">
+    <div class="title pb-2" ng-bind="::ngDialogData.title | translate:{ 
+        param: ngDialogData.param }"></div>
+    <div class="message" >
+        <table class="table-striped table-bordered col-12"  ng-show="ngDialogData.data != null" id="output">
+            <thead>
+                <th ng-bind="::'parameter_name' | translate"></th>
+                <th ng-bind="::'parameter_value' | translate"></th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="(key,value) in ngDialogData.data">
+                    <td class="px-2" ng-bind="::key"></td>
+                    <td class="px-2" ng-bind="::value"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="buttons mt-2">
+        <button ng-repeat="button in ngDialogData.buttons" ng-click="closeThisDialog()"
+            ng-class="button.classes" ng-bind="::button.name | translate"></button>
+    </div>
+</div>

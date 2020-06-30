@@ -1,0 +1,2 @@
+0 2 * * * /app/cron_job > /dev/null 2>&1
+# Create a daily cron job that will run at 2AM

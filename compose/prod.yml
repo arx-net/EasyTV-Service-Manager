@@ -1,0 +1,68 @@
+version: '3.1'
+services:
+  service_manager_cron:
+    image: easytv-sm-cron:1.0.2-alpha
+    networks:
+      - sm_net
+    environment:
+      DB_SCHEMA: "sm"
+      DB_PORT: "5432"
+      DB_HOST: "service_manager_db"
+      DB_USER_FILE: "/run/secrets/smdb_user"
+      DB_PASSWORD_FILE: "/run/secrets/smdb_password"
+    command: ["crond", "-f", "-L", "/dev/stdout"]
+    volumes:
+      - /home/skourtis/sm/logs/cron:/var/log/sm
+    secrets:
+      - smdb_user
+      - smdb_password
+
+  service_manager_api:
+    image: easytv-sm:1.0.2-alpha
+    ports:
+      - "80:3000"
+    networks:
+      - sm_net
+    volumes:
+      - /home/skourtis/sm/assets:/asset/
+      - /home/skourtis/sm/logs/api:/var/log/sm
+    environment:
+      DB_SCHEMA: "sm"
+      DB_PORT: "5432"
+      DB_HOST: "service_manager_db"
+      DB_USER_FILE: "/run/secrets/smdb_user"
+      DB_PASSWORD_FILE: "/run/secrets/smdb_password"
+      MAX_CONNECTIONS: "100"
+      IDLE_CONNECTIONS: "10"
+      SRT_CMD: "/app/srt"
+    secrets:
+      - smdb_user
+      - smdb_password
+      
+  service_manager_db:
+    image: postgres:11.1-alpine
+    environment:
+      POSTGRES_USER_FILE: "/run/secrets/smdb_user"
+      POSTGRES_PASSWORD_FILE: "/run/secrets/smdb_password"
+      POSTGRES_DB: "sm"
+    command: ["-c", "max_connections=100"]
+    volumes:
+      - /home/skourtis/sm/dbdata:/var/lib/postgresql/data
+    networks:
+      - sm_net
+    secrets:
+      - smdb_user
+      - smdb_password
+  service_manager_cache:
+    image: memcached:1.5.12-alpine
+    networks:
+      - sm_net
+      
+secrets:
+  smdb_user:
+    external: true
+  smdb_password:
+    external: true
+    
+networks:
+  sm_net:

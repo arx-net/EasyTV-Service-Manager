@@ -1,0 +1,51 @@
+<div class="row mx-0">
+    <div class="col-2 col-sm-4 px-0"></div>
+    <div class="col-8 col-sm-4 px-0 d-block">
+        <img class="w-100 mt-4 d-block mx-auto" id="logo" src="./assets/css/img/logo_easytv.png" alt="EasyTV logo" title="EasyTV">
+    </div>
+    <div class="col-2 col-sm-4 px-0"></div>
+</div>
+<div class="row">
+    <h1 class="col text-center">Service Manager</h1>
+</div>
+<div class="row mx-0">
+    <div class="col-2 px-0"></div>
+    <div class="col-8 px-0 login">
+        <div class="login-window mt-5">
+            <div class="col-sm-12 px-0 d-inline-block">
+                <div class="form-group">
+                    <label for="username" ng-bind="'username' | translate"></label>
+                    <input
+                        ng-keypress="keypressed($event)"
+                        id="username" 
+                        type="text" 
+                        class="form-control" 
+                        name="username" 
+                        ng-model="username" 
+                        placeholder="Enter username">
+                </div>
+                <div class="form-group">
+                    <label for="password" ng-bind="'password' | translate"></label>
+                    <input
+                        ng-keypress="keypressed($event)"
+                        id="password" 
+                        type="password" 
+                        class="form-control" 
+                        name="password" 
+                        ng-model="password" 
+                        placeholder="Enter password">
+                </div>
+                <div>
+                    <button class="d-block btn mt-3 sm-button col-sm-4 offset-sm-8 col-md-3 offset-md-9" id="login-buttona" 
+                        ng-click="login_clicked()" ng-bind="'login' | translate"></button>
+                </div>
+            </div>
+        </div>
+        <div class="language mt-5">
+            <select class="custom-select col-lg-4 col-md-5 col-sm-6 col-12 float-right mt-5 mb-4" id="inputGroupSelect02" ng-model="language"
+            ng-change="changeLanguage(language)" ng-options="lang.value as lang.name for lang in list">
+            </select>
+        </div>
+    </div>
+    <div class="col-2 px-0"></div>
+</div>

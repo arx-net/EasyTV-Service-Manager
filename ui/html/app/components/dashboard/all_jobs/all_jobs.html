@@ -1,0 +1,56 @@
+<div class="row">
+    <p class="m-3 h2" ng-bind="'all_jobs_created_by_me' | translate"></p>
+</div>
+<div class="table-responsive">
+    <table class="table table-striped table-bordered" id="job_list">
+        <thead>
+            <tr>
+                <th ng-bind="'id' | translate"></th>
+                <th ng-bind="'status' | translate"></th>
+                <th ng-bind="'publication_date' | translate"></th>
+                <th ng-bind="'expiration_date' | translate"></th>
+                <th ng-bind="'creation_date' | translate"></th>
+                <th ng-bind="'completion_date' | translate"></th>
+                <th ng-bind="'current_task' | translate"></th>
+                <th ng-bind="'output' | translate"></th>
+                <th></th>
+            </tr>
+            <!-- <th><i class="float-right btn fas fa-times text-dark" ng-click="remove_task($index)"></i></th> -->
+        </thead>
+        <tbody>
+            <tr ng-repeat="job in job_list">
+                <td ng-bind="::job.id"></td>
+                <td>
+                    <i class="fas fa-times d-inline-block" ng-if="job.is_canceled == true" style="color:#ec375e"> </i>
+                    <i class="fas fa-check d-inline-block" ng-if="job.is_canceled == false && job.is_completed == true" style="color: #1a90a2"> </i>
+                    <i class="fas fa-spinner d-inline-block" ng-if="job.is_canceled == false && job.is_completed == false" style="color: #1a90a2"> </i>
+                    <label class="d-inline" ng-bind="::job.status"></label>
+                </td>
+                <td ng-bind="::job.publication_date"></td>
+                <td ng-bind="::job.expiration_date"></td>
+                <td ng-bind="::job.creation_date"></td>
+                <td ng-bind="::job.completion_date"></td>
+                <td ng-bind="::'-'" ng-if="job.is_canceled == true || job.is_completed == true"></td>
+                <td ng-bind="::job.current_task + 1 + '/' + job.tasks.length" ng-if="job.is_canceled == false  && job.is_completed == false"></td>
+                <td ng-bind="'job_is_canceled' | translate"  ng-if="job.is_canceled == true"></td>
+                <td ng-if="!job.is_canceled && job.is_completed && !job.output" ng-bind="'job_expired' | translate"></td>
+                <td ng-if="!job.is_canceled && job.is_completed && job.output">
+                    <button class="btn sm-button" ng-click="show_output(job.output)">
+                        <i class="fas fa-table"></i>
+                        <span ng-bind="'output' | translate"></span>
+                    </button>
+                </td>
+                <td ng-if="!job.is_canceled && !job.is_completed" ng-bind="'job_not_completed' | translate"></td>
+                <td>
+                    <span ng-show="job.is_canceled || job.is_completed">-</span>
+                    <span ng-show="!job.is_completed">
+                        <button class="btn btn-danger" ng-click="cancel_job(job)">
+                            <i class="fas fa-ban"></i>
+                            <span ng-bind="'cancel' | translate"></span>
+                        </button>
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table> 
+</div>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)http://localhost/dashboard.html#!/create_job -->
+<html lang="en" class=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- css -->
+    <link rel="stylesheet" href="./Document_files/dashboard.css">
+    <link rel="stylesheet" href="./Document_files/toggler.css">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="./Document_files/bootstrap.min.css">
+    <link rel="stylesheet" href="./Document_files/datatables.min.css">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="./Document_files/all.min.css">
+    <!-- jquery -->
+    <link rel="stylesheet" href="./Document_files/jquery-ui.min.css">
+    <!-- ng dialog -->
+    <link rel="stylesheet" href="./Document_files/ngDialog.min.css">
+    <link rel="stylesheet" href="./Document_files/ngDialog-theme-default.min.css">
+    <link rel="stylesheet" href="./Document_files/modal.css">
+    <!-- libs -->
+    <script src="./Document_files/jquery.min.js"></script>
+    <script src="./Document_files/jquery-ui.min.js"></script>
+    <!-- bootstrap -->
+    <script src="./Document_files/bootstrap.min.js"></script>
+    <script src="./Document_files/datatables.min.js"></script>
+    <!-- angular -->
+    <script src="./Document_files/angular.js"></script>
+    <script src="./Document_files/angular-route.js"></script>
+    <script src="./Document_files/angular-translate.min.js"></script>
+    <script src="./Document_files/angular-translate-loader-static-files.min.js"></script>
+    <script src="./Document_files/ngDialog.min.js"></script>
+    <!-- end of libs -->
+    <script src="./Document_files/app.module.js"></script>
+    <script src="./Document_files/app.routes.js"></script>
+
+    <!-- controllers -->
+    <script src="./Document_files/appController.js"></script>
+    <script src="./Document_files/headerController.js"></script>
+    <script src="./Document_files/dashboardController.js"></script>
+    <script src="./Document_files/footerController.js"></script>
+    <script src="./Document_files/accountController.js"></script>
+    
+    <!-- services -->
+    <script src="./Document_files/accountService.js"></script>
+    <script src="./Document_files/dashboardService.js"></script>
+    <script src="./Document_files/modalService.js"></script>
+    <script src="./Document_files/requestService.js"></script>
+
+</head>
+<body ng-app="arx-net" ng-controller="mainController" class="ng-scope" style="">
+    <!-- ngInclude: 'app/components/header/header.html' --><nav ng-include="&#39;app/components/header/header.html&#39;" class="navbar navbar-expand-sm navbar-dark bg-dark ng-scope" ng-controller="headerController"><a class="navbar-brand ng-scope" href="http://localhost/dashboard.html#"> <img class="w-100" src="./Document_files/logo_easytv.png" alt="There is the logo_easytv here" title="EasyTV"></a>
+<button class="navbar-toggler d-block d-sm-none ng-scope" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-expanded="false" aria-controls="navbarNavDropdown">
+  <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse ng-scope" id="navbarNavDropdown">
+  <div class="header_list">
+    <select class="custom-select ng-pristine ng-untouched ng-valid ng-not-empty" id="language_select" ng-model="language" ng-change="changeLanguage(language)" ng-options="lang.value as lang.name for lang in language_list"><option label="English" value="string:en" selected="selected">English</option><option label="Greek" value="string:el">Greek</option></select>
+    <button class="navbar-toggler rounded-circle mx-2 px-1 py-1 d-inline-block" type="button" data-toggle="collapse" data-target="#accountbar" aria-expanded="false" aria-controls="accountbar">
+    <i class="avatar rounded-circle fas fa-user"></i>
+  </button></div>
+</div>
+</nav>
+    <!-- ngInclude: 'app/components/account/account.html' --><div ng-include="&#39;app/components/account/account.html&#39;" class="accountbar collapse px-0 col-lg-2 col-sm-3 col-12 ng-scope" id="accountbar" ng-controller="accountController"><nav class="navbar-nav navbar-dark bg-dark w-100 ng-scope">
+    <ul class="navbar-nav w-100">
+        <!-- ngRepeat: item in list --><li class="nav-item pl-3 ng-scope" ng-repeat="item in list">
+            <i ng-class="item.fontAwesome" class="fas fa-sign-out-alt"></i>
+            <!-- ngIf: item.name == 'logout' --><a class="nav-link pl-2 ng-binding ng-scope" ng-if="item.name == &#39;logout&#39;" href="http://localhost/dashboard.html#" ng-click="this[item.name]()" ng-bind="item.name | translate">Logout</a><!-- end ngIf: item.name == 'logout' -->
+            <!-- ngIf: item.name != 'logout' -->
+        </li><!-- end ngRepeat: item in list -->
+    </ul>
+</nav></div>
+    <div class="row mx-0 h-100">
+        <!-- ngView: --><ng-view class="col-12 px-0 ng-scope"><div class="row mx-0 px-0 h-100 ng-scope">
+    <!-- ngInclude: 'app/components/dashboard/leftbar.html' --><div class="col-lg-2 col-sm-3 px-0 d-inline-block ng-scope" ng-include="&#39;app/components/dashboard/leftbar.html&#39;"><nav class="leftbar navbar-dark bg-dark px-0 py-0 ng-scope">
+    <ul class="navbar-nav w-100">
+        <!-- ngRepeat: item in list --><li ng-repeat="item in list" ng-class="{&#39;active&#39;: $parent.leftbar[item.name]}" class="nav-item pl-3 my-1 ng-scope">
+            <i class="leftbar-i fas fa-list-ol" ng-class="item.fontawesome"></i>
+            <a class="nav-link float-right ng-binding" href="http://localhost/dashboard.html#!/all_jobs" ng-bind="item.name | translate" ng-click="item_clicked(item.name)">All jobs</a>
+            <br>
+        </li><!-- end ngRepeat: item in list --><li ng-repeat="item in list" ng-class="{&#39;active&#39;: $parent.leftbar[item.name]}" class="nav-item pl-3 my-1 ng-scope active">
+            <i class="leftbar-i fas fa-plus" ng-class="item.fontawesome"></i>
+            <a class="nav-link float-right ng-binding" href="http://localhost/dashboard.html#!/create_job" ng-bind="item.name | translate" ng-click="item_clicked(item.name)">Create job</a>
+            <br>
+        </li><!-- end ngRepeat: item in list -->
+    </ul>
+</nav></div>
+    <!-- ngInclude: 'app/components/dashboard/center.html' --><div class="col-lg-10 col-sm-9 px-0 float-right ng-scope" ng-include="&#39;app/components/dashboard/center.html&#39;"><div class="col-sm-12 pr-0 mt-3 ng-scope ng-hide" ng-show="$parent.leftbar.all_jobs">
+    <div class="float-left">
+        <label class="d-block mr-2 ng-binding" for="title" ng-bind="&#39;name&#39; | translate">Name</label>
+        <label class="d-block mr-2 ng-binding" for="title" ng-bind="&#39;username&#39; | translate">Username</label>
+        <label class="d-block mr-2 ng-binding" for="title" ng-bind="&#39;email&#39; | translate">Email</label>
+    </div>
+    <div class="inputs float-left">
+        <input type="text" name="name" ng-model="$parent.name" class="ng-pristine ng-untouched ng-valid ng-empty"><br>
+        <input type="text" name="username" ng-model="$parent.username" class="ng-pristine ng-untouched ng-valid ng-empty"><br>
+        <input type="text" name="email" ng-model="$parent.email" class="ng-pristine ng-untouched ng-valid ng-empty"><br>
+        <button class="bg-dark px-4 border border-secondary text-light ng-binding" id="upload" ng-bind="&#39;submit&#39; | translate" ng-click="submit_register()">Submit</button>
+    </div>
+</div>
+<div class="col-sm-12 pr-0 mt-3 ng-scope" ng-show="$parent.leftbar.create_job">
+        <div>
+            <h4 ng-bind="::&#39;create_job&#39; | translate" class="ng-binding">Create job</h4>
+            <label class="col-lg-2 col-md-3 col-sm-5 col-5 pl-0 ng-binding" for="public_date" ng-bind="&#39;publication_date&#39; |translate">Publication Date</label>
+            <input class="date ng-pristine ng-untouched ng-valid ng-empty hasDatepicker" type="text" name="public_date" size="20" placeholder="mm-dd-yyyy" ng-model="$parent.public_date" id="dp1547643543527"><br>
+            <label class="col-lg-2 col-md-3 col-sm-5 col-5 pl-0 ng-binding" for="exp_date" ng-bind="&#39;expiration_date&#39; | translate">Expiration Date</label>
+            <input class="date ng-pristine ng-untouched ng-valid ng-empty hasDatepicker" type="text" name="exp_date" size="20" placeholder="mm-dd-yyyy" ng-model="$parent.exp_date" id="dp1547643543528"><br>
+            <button class="mt-2 btn btn-dark float-right mr-3 ng-binding" ng-bind="&#39;add_task&#39; | translate" ng-click="$parent.show_services()">Add task</button>
+        </div>
+      <p class="my-2 ng-binding" ng-bind="&#39;job_status&#39; | translate: {param: tasks.length }">The job has 2 task(s)</p>
+        <!-- ngRepeat: task in tasks --><table class="my-4 col-sm-12 table-striped table-bordered ng-scope" ng-show="tasks.length &gt; 0" ng-repeat="task in tasks">
+            <thead>
+                <tr><th ng-bind="::task.name" class="ng-binding">Giobas</th>
+                <th><i class="float-right btn fas fa-times text-dark" ng-click="remove_task($index)"></i></th>
+            </tr></thead>
+            <tbody>
+                <!-- ngRepeat: (key,value) in task.input --><tr ng-repeat="(key,value) in task.input" class="ng-scope">
+                    <td>
+                        <label class="col-5 col-sm-4 col-lg-3 px-0 ng-binding" for="language_source" ng-bind="::key">language_source</label>
+                        <div class="col-3 col-sm-3 col-lg-2 px-0 d-inline-block ng-hide" ng-show="$parent.$index &gt; 0">
+                            <label type="checkbox" ng-bind="::&#39;linked_input&#39; | translate" class="ng-binding">Linked</label>
+                            <input type="checkbox" ng-model="linked" ng-change="linked_change($index,$parent.$index)" class="ng-pristine ng-untouched ng-valid ng-empty">
+                        </div>
+                        <input class="col-3 col-sm-4 col-md-4 col-lg-6 px-0" type="text" ng-show="linked == false" name="language_source">
+                    </td>
+                </tr><!-- end ngRepeat: (key,value) in task.input --><tr ng-repeat="(key,value) in task.input" class="ng-scope">
+                    <td>
+                        <label class="col-5 col-sm-4 col-lg-3 px-0 ng-binding" for="language_target" ng-bind="::key">language_target</label>
+                        <div class="col-3 col-sm-3 col-lg-2 px-0 d-inline-block ng-hide" ng-show="$parent.$index &gt; 0">
+                            <label type="checkbox" ng-bind="::&#39;linked_input&#39; | translate" class="ng-binding">Linked</label>
+                            <input type="checkbox" ng-model="linked" ng-change="linked_change($index,$parent.$index)" class="ng-pristine ng-untouched ng-valid ng-empty">
+                        </div>
+                        <input class="col-3 col-sm-4 col-md-4 col-lg-6 px-0" type="text" ng-show="linked == false" name="language_target">
+                    </td>
+                </tr><!-- end ngRepeat: (key,value) in task.input --><tr ng-repeat="(key,value) in task.input" class="ng-scope">
+                    <td>
+                        <label class="col-5 col-sm-4 col-lg-3 px-0 ng-binding" for="original_text" ng-bind="::key">original_text</label>
+                        <div class="col-3 col-sm-3 col-lg-2 px-0 d-inline-block ng-hide" ng-show="$parent.$index &gt; 0">
+                            <label type="checkbox" ng-bind="::&#39;linked_input&#39; | translate" class="ng-binding">Linked</label>
+                            <input type="checkbox" ng-model="linked" ng-change="linked_change($index,$parent.$index)" class="ng-pristine ng-untouched ng-valid ng-empty">
+                        </div>
+                        <input class="col-3 col-sm-4 col-md-4 col-lg-6 px-0" type="text" ng-show="linked == false" name="original_text">
+                    </td>
+                </tr><!-- end ngRepeat: (key,value) in task.input -->
+            </tbody>
+        </table><!-- end ngRepeat: task in tasks --><table class="my-4 col-sm-12 table-striped table-bordered ng-scope" ng-show="tasks.length &gt; 0" ng-repeat="task in tasks">
+            <thead>
+                <tr><th ng-bind="::task.name" class="ng-binding">Skourti vale tasks</th>
+                <th><i class="float-right btn fas fa-times text-dark" ng-click="remove_task($index)"></i></th>
+            </tr></thead>
+            <tbody>
+                <!-- ngRepeat: (key,value) in task.input --><tr ng-repeat="(key,value) in task.input" class="ng-scope">
+                    <td>
+                        <label class="col-5 col-sm-4 col-lg-3 px-0 ng-binding" for="language_source" ng-bind="::key">language_source</label>
+                        <div class="col-3 col-sm-3 col-lg-2 px-0 d-inline-block" ng-show="$parent.$index &gt; 0">
+                            <label type="checkbox" ng-bind="::&#39;linked_input&#39; | translate" class="ng-binding">Linked</label>
+                            <input type="checkbox" ng-model="linked" ng-change="linked_change($index,$parent.$index)" class="ng-valid ng-dirty ng-valid-parse ng-touched ng-not-empty">
+                        </div>
+                        <input class="col-3 col-sm-4 col-md-4 col-lg-6 px-0 ng-hide" type="text" ng-show="linked == false" name="language_source">
+                    </td>
+                </tr><!-- end ngRepeat: (key,value) in task.input --><tr ng-repeat="(key,value) in task.input" class="ng-scope">
+                    <td>
+                        <label class="col-5 col-sm-4 col-lg-3 px-0 ng-binding" for="language_target" ng-bind="::key">language_target</label>
+                        <div class="col-3 col-sm-3 col-lg-2 px-0 d-inline-block" ng-show="$parent.$index &gt; 0">
+                            <label type="checkbox" ng-bind="::&#39;linked_input&#39; | translate" class="ng-binding">Linked</label>
+                            <input type="checkbox" ng-model="linked" ng-change="linked_change($index,$parent.$index)" class="ng-pristine ng-untouched ng-valid ng-empty">
+                        </div>
+                        <input class="col-3 col-sm-4 col-md-4 col-lg-6 px-0" type="text" ng-show="linked == false" name="language_target">
+                    </td>
+                </tr><!-- end ngRepeat: (key,value) in task.input --><tr ng-repeat="(key,value) in task.input" class="ng-scope">
+                    <td>
+                        <label class="col-5 col-sm-4 col-lg-3 px-0 ng-binding" for="original_text" ng-bind="::key">original_text</label>
+                        <div class="col-3 col-sm-3 col-lg-2 px-0 d-inline-block" ng-show="$parent.$index &gt; 0">
+                            <label type="checkbox" ng-bind="::&#39;linked_input&#39; | translate" class="ng-binding">Linked</label>
+                            <input type="checkbox" ng-model="linked" ng-change="linked_change($index,$parent.$index)" class="ng-pristine ng-untouched ng-valid ng-empty">
+                        </div>
+                        <input class="col-3 col-sm-4 col-md-4 col-lg-6 px-0" type="text" ng-show="linked == false" name="original_text">
+                    </td>
+                </tr><!-- end ngRepeat: (key,value) in task.input -->
+            </tbody>
+        </table><!-- end ngRepeat: task in tasks --> 
+        <button class="mt-2 btn btn-dark float-right mr-3 ng-binding" ng-show="tasks.length &gt; 0" ng-bind="&#39;post_job&#39; | translate" ng-click="$parent.post_job()">Post job</button>
+       <!--  <table class="my-2 table table-striped table-bordered " id="services">
+            <thead >
+                <tr>
+                    <th ng-bind="'publication_date' | translate"></th>
+                    <th ng-bind="'expiration_date' | translate"></th> 
+                    <th ng-bind="'tasks' | translate"></th> 
+                    <th ng-bind="'Input' | translate"></th> 
+                    <th ng-bind="'Output' | translate"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="service in $parent.services" ng-if="service.tasks.length > 0">
+                    <td  id="plication_date">
+                        <input type="text" size="10" name="public_date"><br/>
+                    </td>
+                    <td  id="expiration_date">
+                        <input type="text" size="10" name="exp_date">
+                    </td>
+                    <td  id="tasks">
+                        <select name="tasks" id="" ng-model="selected_tasks" multiple>
+                            <option ng-repeat="task in service.tasks" ng-value="task">{{::task.name}}</option>
+                        </select>
+                    </td>
+                    <td ng-model="selected_tasks" id="input">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th ng-repeat="task in selected_tasks" >
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th ng-bind="::task.name" colspan="2"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="(key,value) in task.input" >
+                                                    <td ng-bind="::key"></td>
+                                                    <td>
+                                                        <input type="text" size="10" name="{{::key}}">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td ng-bind="'submit' | translate"></td>
+                                                    <td>
+                                                            <button class="btn btn-dark" ng-bind="'submit' | translate" ng-click=></button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </td>
+                    <td id="output">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th ng-repeat="task in selected_tasks" >
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th ng-repeat="(key,value) in task.output" ng-bind="key" ></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <td ng-repeat="(key,value) in task.output">
+                                                    <input type="text" size="10" name="{{::key}}">
+                                                </td>
+                                            </tbody>
+                                        </table>
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table> -->
+    <!-- </div> -->
+    <!-- <div class="services_list table-responsive">
+        <table class="my-2 table table-striped table-bordered " id="services">
+            <thead >
+                <tr>
+                    <th ng-bind="'id' | translate"></th>
+                    <th ng-bind="'name' | translate"></th> 
+                    <th ng-bind="'description' | translate"></th>
+                    <th ng-bind="'api_key'"></th>
+                    <th ng-bind="'enabled' | translate"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="service in $parent.services">
+                    <td ng-bind="::service.id"></td>
+                    <td ng-bind="::service.name"></td>
+                    <td ng-bind="::service.description"></td>
+                    <td ng-bind="::service.api_key"></td>
+                    <td> 
+                        <label class="switch my-1">
+                            <input type="checkbox" ng-change="request_service_availability_change(service)" 
+                                ng-checked="service.enabled" ng-model="services[$index].enabled" >
+                            <span class="slider round"></span>
+                        </label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div> -->
+</div></div>
+</div></ng-view>
+    </div> 
+
+<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div></body></html>

@@ -1,0 +1,11 @@
+<div class="dialog d-inline-block col-12">
+    <div class="title pb-2" ng-bind="::ngDialogData.title | translate:{ 
+        param: ngDialogData.param }"></div>
+    <div class="message pl-2" ng-bind="::ngDialogData.message | translate:{ 
+        param: ngDialogData.param }">
+    </div>
+    <div class="mt-2" style="margin: 0 auto; display: table">
+        <button class="btn" ng-repeat="button in ngDialogData.buttons" ng-click="closeThisDialog(button.return)"
+                ng-class="button.classes" ng-bind="::button.name | translate"></button>
+    </div>
+</div>

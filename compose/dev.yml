@@ -1,0 +1,73 @@
+version: '3'
+services:
+  service_manager_cron:
+    build:
+      context: ../api
+      dockerfile: cron.Dockerfile
+    networks:
+      - sm_net
+    environment:
+      DB_USER: "sm"
+      DB_PASSWORD: "dbpass"
+      DB_SCHEMA: "sm"
+      DB_PORT: "5432"
+      DB_HOST: "service_manager_db"
+    command: ["crond", "-f", "-L", "/dev/stdout"]
+    volumes:
+      - ../.log/cron:/var/log/sm
+
+  service_manager_api:
+    build:
+      context: ../api
+      dockerfile: api-dev.Dockerfile
+    ports:
+      - "81:3000"
+    networks:
+      - sm_net
+    volumes:
+      - ../api/src/gitlab.arx.net:/go/src/gitlab.arx.net
+      - ../.asset:/asset/
+      - ../.log/api:/var/log/sm
+    environment:
+      DB_USER: "sm"
+      DB_PASSWORD: "dbpass"
+      DB_SCHEMA: "sm"
+      DB_PORT: "5432"
+      DB_HOST: "service_manager_db"
+      MAX_CONNECTIONS: "100"
+      IDLE_CONNECTIONS: "10"
+      SRT_CMD: "/go/bin/srt"
+
+  service_manager_db:
+    image: postgres:11.1-alpine
+    environment:
+      POSTGRES_USER: "sm"
+      POSTGRES_PASSWORD: "dbpass"
+      POSTGRES_DB: "sm"
+    command: ["-c", "max_connections=100"]
+    volumes:
+      - ../.data:/var/lib/postgresql/data
+    networks:
+      - sm_net
+
+  service_manager_ui:
+    build: ../ui
+    ports:
+      - "80:80"
+    networks:
+      - sm_net
+    volumes:
+      - ../ui/html:/usr/share/nginx/html
+    environment:
+      NGINX_PORT: "80"
+      SM_API_HOST: "service_manager_api"
+      SM_API_PORT: "3000"
+  service_manager_cache:
+    image: memcached:1.5.12-alpine
+    networks:
+      - sm_net
+    volumes:
+      - "../.data:/var/lib/postgresql/data"
+      
+networks:
+  sm_net:

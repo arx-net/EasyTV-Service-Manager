@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EasyTV Service Manager</title>
+
+    <!-- css -->
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="assets/css/toggler.css">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="assets/css/bootstrap-4.0/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-4.0/datatables.min.css">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="assets/css/fontAwesome/all.min.css">
+    <!-- jquery -->
+    <link rel="stylesheet" href="assets/css/jquery/jquery-ui.min.css">
+    <!-- ng dialog -->
+    <link rel="stylesheet" href="assets/css/ng-dialog/css/ngDialog.min.css">
+    <link rel="stylesheet" href="assets/css/ng-dialog/css/ngDialog-theme-default.min.css">
+    <link rel="stylesheet" href="assets/css/modal.css">
+    <!-- libs -->
+    <script src="assets/libs/jquery/jquery.min.js"></script>
+    <script src='assets/libs/jquery/jquery-ui.min.js'></script>
+    <!-- bootstrap -->
+    <script src="assets/libs/bootstrap-4.0/bootstrap.min.js"></script>
+    <script src="assets/libs/bootstrap-4.0/datatables.min.js"></script>
+    <!-- angular -->
+    <script src="assets/libs/angular/angular.js"></script>
+    <script src="assets/libs/angular/angular-route.js"></script>
+    <script src="assets/libs/angular/angular-translate.min.js"></script>
+    <script src="assets/libs/angular/angular-translate-loader-static-files.min.js"></script>
+    <script src="assets/libs/ng-dialog/js/ngDialog.min.js"></script>
+    <!-- end of libs -->
+    <script src="app/app.module.js"></script>
+    <script src="app/app.routes.js"></script>
+
+    <!-- controllers -->
+    <script src="app/appController.js"></script>
+    <script src="app/components/header/headerController.js"></script>
+    <script src="app/components/dashboard/dashboardController.js"></script>
+    <script src="app/components/dashboard/all_jobs/alljobsController.js"></script>
+    <script src="app/components/dashboard/create_job/createjobController.js"></script>
+    <script src="app/components/footer/footerController.js"></script>
+    <script src="app/components/account/accountController.js"></script>
+    <script src="app/components/modal/modalController.js"></script>
+    
+    <!-- services -->
+    <script src="app/services/accountService.js"></script>
+    <script src="app/services/dashboardService.js"></script>
+    <script src="app/services/modalService.js"></script>
+    <script src="app/services/requestService.js"></script>
+    <script src="app/services/errorService.js"></script>
+    <script>
+        if(window.sessionStorage.getItem("token") == null){
+           window.location.hash = "";
+           window.location.pathname = "/index.html";
+       }
+    </script>
+</head>
+<body ng-app="arx-net" ng-controller="mainController">
+    <nav ng-include="'app/components/header/header.html'" class="navbar navbar-expand-sm navbar-dark bg-dark" ng-controller="headerController"></nav>
+    <div ng-include="'app/components/account/account.html'" class="accountbar collapse px-0  col-lg-2 col-sm-3 col-12" id="accountbar"
+        ng-controller="accountController"></div>
+    <div class="row mx-0 h-100">
+        <ng-view class="col-12 px-0" class="h-100"></ng-view>
+    </div> 
+</body>
+</html>

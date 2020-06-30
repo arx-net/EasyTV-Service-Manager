@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EasyTV Service Manager</title>
+
+    <link rel="stylesheet" href="assets/css/bootstrap-4.0/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/fontAwesome/all.min.css">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <!-- ng dialog -->
+    <link rel="stylesheet" href="assets/css/ng-dialog/css/ngDialog.min.css">
+    <link rel="stylesheet" href="assets/css/ng-dialog/css/ngDialog-theme-default.min.css">
+
+    <!-- libs -->
+    <script src="assets/libs/jquery/jquery.min.js"></script>
+    <script src="assets/libs/angular/angular.js"></script>
+    <script src="assets/libs/angular/angular-route.js"></script>
+    <script src="assets/libs/angular/angular-translate.min.js"></script>
+    <script src="assets/libs/angular/angular-translate-loader-static-files.min.js"></script>
+    <script src="assets/libs/ng-dialog/js/ngDialog.min.js"></script>
+
+    <script src="app/app.module.js"></script>
+    <script src="app/app.routes.js"></script>
+
+    <!-- controllers -->
+    <script src="app/components/login/loginController.js"></script>
+    <!-- services -->
+    <script src="app/services/loginService.js"></script>
+    <script src="app/services//requestService.js"></script>
+</head>
+<body ng-app="arx-net">
+    <div class="row mx-0">
+        <ng-view class="mt-5 col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 px-0" id="login_view"></ng-view>
+    </div>
+</body>
+</html>

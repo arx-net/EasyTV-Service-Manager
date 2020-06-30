@@ -1,0 +1,9 @@
+<nav class="leftbar navbar-dark bg-dark px-0 py-0">
+    <ul class="navbar-nav w-100">
+        <li ng-repeat="item in list" ng-class="{'active': $parent.leftbar[item.name]}" class="nav-item pl-3 my-1">
+            <i class="leftbar-i" ng-class="item.fontawesome"></i>
+            <a class="nav-link float-right" href="#!/{{::item.name}}" ng-bind="item.name | translate" ng-click="item_clicked(item.name)"></a>
+            <br/>
+        </li>
+    </ul>
+</nav>

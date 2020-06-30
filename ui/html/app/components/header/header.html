@@ -1,0 +1,25 @@
+
+<a class="navbar-brand" href="{{::home}}" style="display: inline-table">
+  <img src="./assets/css/img/logo_easytv.png" 
+    id="app-logo" 
+    alt="EasyTV logo" 
+    title="EasyTV"
+    class="d-inline-block align-middle">
+  <span id="app-title" class="align-middle">Service Manager</span>
+</a>
+
+<button class="navbar-toggler d-block d-sm-none" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-expanded="false"
+  aria-controls="navbarNavDropdown">
+  <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarNavDropdown">
+  <div class="header_list">
+    <select class="custom-select" id="language_select" ng-model="language"
+      ng-change="changeLanguage(language)" ng-options="lang.value as lang.name for lang in language_list">
+    </select>
+    <button class="navbar-toggler rounded-circle mx-2 px-1 py-1 d-inline-block" type="button" data-toggle="collapse" data-target="#accountbar" aria-expanded="false"
+      aria-controls="accountbar">
+    <i class="avatar rounded-circle fas fa-user"></i>
+  </div>
+</div>
+</button>
